@@ -5,3 +5,7 @@ const BACKEND_BASE_URL = import.meta.env.VITE_API_URL.replace(/\/api\/v1\/?$/, '
 export function tourImageUrl(filename) {
   return `${BACKEND_BASE_URL}/img/tours/${filename}`;
 }
+
+export function userImageUrl(filename) {
+  return `${BACKEND_BASE_URL}/img/users/${filename}`;
+}
