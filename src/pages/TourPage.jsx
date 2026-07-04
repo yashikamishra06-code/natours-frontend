@@ -15,6 +15,7 @@ import {
 } from "../api/bookingApi";
 
 import { jwtDecode } from "jwt-decode";
+import { tourImageUrl } from "../utils/imageUrl";
 
 function TourPage() {
   const { slug } = useParams();
@@ -302,7 +303,7 @@ function TourPage() {
 
         <div className="grid gap-6 rounded-2xl bg-slate-900 p-8">
           <img
-            src={`http://localhost:8000/img/tours/${tour.imageCover}`}
+            src={tourImageUrl(tour.imageCover)}
             alt={tour.name}
             className="h-[400px] w-full rounded-2xl object-cover"
           />
@@ -464,7 +465,7 @@ function TourPage() {
               {tour.images.map((img) => (
                 <img
                   key={img}
-                  src={`http://localhost:8000/img/tours/${img}`}
+                  src={tourImageUrl(img)}
                   alt={tour.name}
                   className="h-56 w-full rounded-xl object-cover"
                 />
