@@ -6,23 +6,27 @@ import { logout, getMe } from "../api/authApi";
 function Header() {
   const navigate = useNavigate();
 
-  const token = document.cookie.includes("jwt");
   const [user, setUser] = useState(null);
+  const [checkedAuth, setCheckedAuth] = useState(false);
 
   useEffect(() => {
     async function loadUser() {
-      if (!token) return;
-
       try {
         const data = await getMe();
         setUser(data);
       } catch (err) {
-        console.error(err);
+        // No valid session (not logged in, or token invalid/expired)
+        setUser(null);
+      } finally {
+        setCheckedAuth(true);
       }
     }
 
     loadUser();
-  }, [token]);
+  }, []);
+
+  // Only treat the user as logged in once we've actually confirmed it with the backend
+  const isLoggedIn = checkedAuth && !!user;
 
   async function handleLogout() {
     try {
@@ -49,7 +53,7 @@ function Header() {
       </Link>
 
       <nav className="flex items-center gap-6">
-        {!token ? (
+        {!isLoggedIn ? (
           <>
             <Link to="/login" className="hover:text-green-400">
               Login

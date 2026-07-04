@@ -20,11 +20,9 @@ function SignupPage() {
     try {
       await signup(name, email, password, passwordConfirm);
 
-      setMessage("Account created successfully!");
-
-      setTimeout(() => {
-        navigate("/");
-      }, 800);
+      setMessage(
+        "Account created! We've sent a verification link to your email — please check your inbox (and spam/junk folder) and click the link to activate your account before logging in."
+      );
     } catch (err) {
       console.error(err);
       setMessage(err.response?.data?.message || "Signup failed");
