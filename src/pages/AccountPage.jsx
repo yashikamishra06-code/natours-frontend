@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
 import { getMe, updateSettings } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
+import { userImageUrl } from "../utils/imageUrl";
 
 function AccountPage() {
   const navigate = useNavigate();
@@ -106,10 +107,7 @@ function AccountPage() {
         <form onSubmit={handleSubmit} className="rounded-2xl bg-slate-900 p-8">
           <div className="mb-8 flex flex-col items-center">
             <img
-              src={
-                previewPhoto ||
-                `http://localhost:8000/img/users/${currentPhoto}`
-              }
+              src={previewPhoto || userImageUrl(currentPhoto)}
               alt={name}
               className="mb-4 h-32 w-32 rounded-full object-cover ring-4 ring-green-400"
             />

@@ -4,6 +4,7 @@ import {
   updateReview,
   deleteReview,
 } from "../api/reviewApi";
+import { userImageUrl } from "../utils/imageUrl";
 
 function ReviewCard({ review, currentUser, onReviewChanged }) {
   const reviewUser = review.refToUser || review.user;
@@ -61,9 +62,7 @@ function ReviewCard({ review, currentUser, onReviewChanged }) {
       <div className="flex items-start gap-5">
         <div className="flex w-24 flex-col items-center">
           <img
-            src={`http://localhost:8000/img/users/${
-              reviewUser?.photo || "default.jpg"
-            }`}
+            src={userImageUrl(reviewUser?.photo || "default.jpg")}
             alt={reviewUser?.name || "User"}
             className="h-16 w-16 rounded-full object-cover"
           />

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { logout, getMe } from "../api/authApi";
+import { userImageUrl } from "../utils/imageUrl";
 
 function Header() {
   const navigate = useNavigate();
@@ -73,9 +74,7 @@ function Header() {
               className="flex flex-col items-center hover:text-green-400"
             >
               <img
-                src={`http://localhost:8000/img/users/${
-                  user?.photo || "default.jpg"
-                }`}
+                src={userImageUrl(user?.photo || "default.jpg")}
                 alt={user?.name || "User"}
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-green-400"
               />
