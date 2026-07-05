@@ -27,7 +27,7 @@ function TourPage() {
   const [unavailableDates, setUnavailableDates] =
     useState([]);
 
-  const [batchStartDates, setBatchStartDates] =
+  const [fullDates, setFullDates] =
     useState([]);
   const [calendarMonth, setCalendarMonth] = useState(new Date());
 
@@ -64,8 +64,8 @@ function TourPage() {
           availabilityData.unavailableDates
         );
 
-        setBatchStartDates(
-          availabilityData.batchStartDates
+        setFullDates(
+          availabilityData.fullDates
         );
       } catch (err) {
         console.error(err);
@@ -101,11 +101,11 @@ function TourPage() {
       : false;
   }
 
-  function isBatchStartDate(date) {
+  function isFull(date) {
     const dateString = formatDate(date);
 
-    return Array.isArray(batchStartDates)
-      ? batchStartDates.includes(dateString)
+    return Array.isArray(fullDates)
+      ? fullDates.includes(dateString)
       : false;
   }
 
@@ -376,7 +376,7 @@ function TourPage() {
 
                 const disabled = isUnavailable(date);
 
-                const batchStart = isBatchStartDate(date);
+                const full = isFull(date);
                 const selected = startDate === dateString;
 
                 return (
@@ -386,12 +386,12 @@ function TourPage() {
                     disabled={disabled}
                     onClick={() => handleDateClick(date)}
                     className={`rounded-lg p-3 text-sm font-semibold ${
-                      disabled
-                        ? "cursor-not-allowed bg-slate-700 text-slate-500"
-                        : selected
+                      selected
                         ? "bg-green-500 text-white"
-                        : batchStart
-                        ? "bg-yellow-500 text-slate-900 hover:bg-yellow-400"
+                        : full
+                        ? "cursor-not-allowed bg-red-900 text-red-300"
+                        : disabled
+                        ? "cursor-not-allowed bg-slate-700 text-slate-500"
                         : "bg-slate-900 text-white hover:bg-green-600"
                     }`}
                   >
@@ -399,6 +399,25 @@ function TourPage() {
                   </button>
                 );
               })}
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-4 text-xs text-slate-400">
+              <span className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded bg-slate-900"></span>
+                Available
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded bg-green-500"></span>
+                Selected
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded bg-red-900"></span>
+                Group full
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded bg-slate-700"></span>
+                You already have a trip
+              </span>
             </div>
 
             {startDate && (

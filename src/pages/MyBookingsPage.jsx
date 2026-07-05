@@ -7,6 +7,7 @@ import {
   getMyBookings,
   cancelBooking,
 } from "../api/bookingApi";
+import { tourImageUrl } from "../utils/imageUrl";
 
 function MyBookingsPage() {
   const [bookings, setBookings] = useState([]);
@@ -87,7 +88,7 @@ function MyBookingsPage() {
                   className="overflow-hidden rounded-2xl bg-slate-900"
                 >
                   <img
-                    src={`http://localhost:8000/img/tours/${tour.imageCover}`}
+                    src={tourImageUrl(tour.imageCover)}
                     alt={tour.name}
                     className="h-60 w-full object-cover"
                   />
