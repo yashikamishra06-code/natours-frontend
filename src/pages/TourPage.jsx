@@ -312,7 +312,7 @@ function TourPage() {
             <span className="font-bold text-green-400">
               Price:
             </span>{" "}
-            ₹{tour.price}
+            ${tour.price}
           </div>
 
           <div>

@@ -104,7 +104,7 @@ function MyBookingsPage() {
 
                     <div className="mb-4 flex items-center justify-between">
                       <span className="text-green-400">
-                        ₹{booking.price}
+                        ${booking.price}
                       </span>
 
                       <span>

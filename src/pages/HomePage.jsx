@@ -130,7 +130,7 @@ function HomePage() {
 
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-slate-800">
-                    ₹{tour.price}
+                    ${tour.price}
                   </span>
 
                   <span className="text-sm text-slate-500">
